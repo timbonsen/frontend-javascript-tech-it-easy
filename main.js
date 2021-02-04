@@ -165,6 +165,7 @@ const inventory = [
 let typesOfTvs = inventory.map((televisions) => {
   return televisions.type
 })
+
 /*console.log(typesOfTvs)*/
 
 let soldOutTvs = inventory.filter((televisions) => {
@@ -174,6 +175,7 @@ let soldOutTvs = inventory.filter((televisions) => {
     return false
   }
 })
+
 /*console.log(soldOutTvs)*/
 
 let ambilightTvs = inventory.filter((televisions) => {
@@ -183,6 +185,7 @@ let ambilightTvs = inventory.filter((televisions) => {
     return false
   }
 })
+
 /*console.log(ambilightTvs)*/
 
 function priceLowToHigh(inventory) {
@@ -190,10 +193,38 @@ function priceLowToHigh(inventory) {
     return a.price - b.price
   })
 }
+
 /*priceLowToHigh(inventory)
 console.log(inventory)*/
 
 function leftToSell(television) {
   return television.originalStock - television.sold;
 }
+
 /*console.log(leftToSell(inventory[0]))*/
+
+function targetRevenue(inventory) {
+  let totalRevenue = 0
+  let revenueArray = inventory.map((a) => {
+    return a.price * a.originalStock
+  })
+  for (let i = 0; i < revenueArray.length; i++) {
+    totalRevenue = totalRevenue + revenueArray[i]
+  }
+  return totalRevenue
+}
+
+/*console.log(targetRevenue(inventory))*/
+
+function currentRevenue(inventory) {
+  let currentRevenue = 0
+  let revenueArray = inventory.map((a) => {
+    return a.price * a.sold;
+  })
+  for (let i = 0; i < revenueArray.length; i++) {
+    currentRevenue = currentRevenue + revenueArray[i]
+  }
+  return currentRevenue
+}
+
+/*console.log(currentRevenue(inventory))*/
