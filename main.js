@@ -162,6 +162,38 @@ const inventory = [
   },
 ];
 
-function leftToSell(originalStock, sold) {
-  return originalStock - sold;
+let typesOfTvs = inventory.map((televisions) => {
+  return televisions.type
+})
+/*console.log(typesOfTvs)*/
+
+let soldOutTvs = inventory.filter((televisions) => {
+  if (televisions.sold === televisions.originalStock) {
+    return true
+  } else {
+    return false
+  }
+})
+/*console.log(soldOutTvs)*/
+
+let ambilightTvs = inventory.filter((televisions) => {
+  if (televisions.options.ambiLight === true) {
+    return true
+  } else {
+    return false
+  }
+})
+/*console.log(ambilightTvs)*/
+
+function priceLowToHigh(inventory) {
+  inventory.sort((a, b) => {
+    return a.price - b.price
+  })
 }
+/*priceLowToHigh(inventory)
+console.log(inventory)*/
+
+function leftToSell(television) {
+  return television.originalStock - television.sold;
+}
+/*console.log(leftToSell(inventory[0]))*/
