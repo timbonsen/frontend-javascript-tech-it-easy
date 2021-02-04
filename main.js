@@ -161,3 +161,7 @@ const inventory = [
     sold: 8,
   },
 ];
+
+function leftToSell(originalStock, sold) {
+  return originalStock - sold;
+}
