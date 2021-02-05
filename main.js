@@ -166,36 +166,34 @@ let typesOfTvs = inventory.map((televisions) => {
   return televisions.type
 })
 
-/*console.log(typesOfTvs)*/
-
-let soldOutTvs = inventory.filter((televisions) => {
-  if (televisions.sold === televisions.originalStock) {
-    return true
-  } else {
-    return false
-  }
-})
-
-/*console.log(soldOutTvs)*/
-
-let ambilightTvs = inventory.filter((televisions) => {
-  if (televisions.options.ambiLight === true) {
-    return true
-  } else {
-    return false
-  }
-})
-
-/*console.log(ambilightTvs)*/
-
-function priceLowToHigh(inventory) {
-  inventory.sort((a, b) => {
-    return a.price - b.price
+function soldOutTvs(inventory) {
+  let filterSoldOutTvs = inventory.filter((televisions) => {
+    if (televisions.sold === televisions.originalStock) {
+      return true
+    } else {
+      return false
+    }
   })
+  console.log(filterSoldOutTvs)
 }
 
-/*priceLowToHigh(inventory)
-console.log(inventory)*/
+function ambilightTvs(inventory) {
+  let filterAmbilightTvs = inventory.filter((televisions) => {
+    if (televisions.options.ambiLight === true) {
+      return true
+    } else {
+      return false
+    }
+  })
+  console.log(filterAmbilightTvs)
+}
+
+function priceLowToHigh(inventory) {
+  let sortedByLowestPrice = inventory.sort((a, b) => {
+    return a.price - b.price
+  })
+  console.log(sortedByLowestPrice)
+}
 
 function leftToSell(inventory) {
   let leftToSell = 0;
@@ -209,7 +207,8 @@ function leftToSell(inventory) {
 }
 
 const tvsToSell = document.getElementById("leftToSell")
-tvsToSell.textContent = `Nog te verkopen: ${leftToSell(inventory)} stuks`
+tvsToSell.innerHTML = "Nog te verkopen: " + "<br />" + leftToSell(inventory);
+
 /*console.log(leftToSell(inventory))*/
 
 function targetRevenue(inventory) {
@@ -223,7 +222,8 @@ function targetRevenue(inventory) {
   return totalRevenue
 }
  const totalRevenue = document.getElementById("targetRevenue")
-totalRevenue.textContent = `Verwachte totale omzet: €${targetRevenue(inventory)}`
+totalRevenue.innerHTML = "Verwachte totale omzet: " + "<br />" + "€" + targetRevenue(inventory)
+
 /*console.log(targetRevenue(inventory))*/
 
 function currentRevenue(inventory) {
@@ -237,7 +237,8 @@ function currentRevenue(inventory) {
   return currentRevenue
 }
 const revenueToDate = document.getElementById("revenueToDate")
-revenueToDate.textContent = `Huidige omzet: €${currentRevenue(inventory)}`
+revenueToDate.innerHTML = "Huidige omzet: " + "<br />" + "€" + currentRevenue(inventory)
+
 /*console.log(currentRevenue(inventory))*/
 
 const televisionType1 = inventory[0].type
@@ -302,3 +303,12 @@ function printAllTvs(inventory) {
 }
 
 printAllTvs(inventory)
+
+const sortByPriceButton = document.getElementById("priceLowToHigh")
+sortByPriceButton.addEventListener("click", () => { priceLowToHigh(inventory) })
+
+const ambilightButton = document.getElementById("ambilight")
+ambilightButton.addEventListener("click", () => { ambilightTvs(inventory) })
+
+const soldOutTvsButton = document.getElementById("soldOutTvs")
+soldOutTvsButton.addEventListener("click", () => { soldOutTvs(inventory) })

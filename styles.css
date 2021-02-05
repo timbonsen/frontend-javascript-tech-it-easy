@@ -1,3 +1,19 @@
+#numberContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.topNumbers {
+    text-align: center;
+    width: 200px;
+    height: 50px;
+}
+
 #leftToSell {
     background-color: red;
 }

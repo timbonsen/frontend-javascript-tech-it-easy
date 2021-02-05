@@ -6,10 +6,17 @@
         <title>Tech It Easy Dashboard</title>
     </head>
     <body>
-        <p id="leftToSell"></p>
-        <p id="targetRevenue"></p>
-        <p id="revenueToDate"></p>
-        <h1 id="televisionList">Televisies op voorraad:</h1>
+        <div id="numberContainer">
+            <p id="leftToSell" class="topNumbers"></p>
+            <p id="targetRevenue" class="topNumbers"></p>
+            <p id="revenueToDate" class="topNumbers"></p>
+        </div>
+        <div id="televisionList">Televisies in assortiment:</div>
+        <div id="buttonContainer">
+            <button id="priceLowToHigh">Sorteer op prijs - Laag naar hoog</button>
+            <button id="ambilight">Ambilight</button>
+            <button id="soldOutTvs">Uitverkochte televisies</button>
+        </div>
     </body>
     <script src="main.js"></script>
 </html>
