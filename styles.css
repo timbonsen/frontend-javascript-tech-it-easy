@@ -1,0 +1,34 @@
+#numberContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+#buttonContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.topNumbers {
+    text-align: center;
+    width: 200px;
+    height: 50px;
+}
+
+#leftToSell {
+    background-color: red;
+}
+
+#targetRevenue {
+    background-color: cornflowerblue;
+}
+
+#revenueToDate {
+    background-color: green;
+}
+
+#televisionContainer {
+    border-style: solid;
+    margin: 10px;
+    padding: 10px;
+    background-color: bisque;
+}

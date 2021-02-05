@@ -161,3 +161,154 @@ const inventory = [
     sold: 8,
   },
 ];
+
+let typesOfTvs = inventory.map((televisions) => {
+  return televisions.type
+})
+
+function soldOutTvs(inventory) {
+  let filterSoldOutTvs = inventory.filter((televisions) => {
+    if (televisions.sold === televisions.originalStock) {
+      return true
+    } else {
+      return false
+    }
+  })
+  console.log(filterSoldOutTvs)
+}
+
+function ambilightTvs(inventory) {
+  let filterAmbilightTvs = inventory.filter((televisions) => {
+    if (televisions.options.ambiLight === true) {
+      return true
+    } else {
+      return false
+    }
+  })
+  console.log(filterAmbilightTvs)
+}
+
+function priceLowToHigh(inventory) {
+  let sortedByLowestPrice = inventory.sort((a, b) => {
+    return a.price - b.price
+  })
+  console.log(sortedByLowestPrice)
+}
+
+function leftToSell(inventory) {
+  let leftToSell = 0;
+  const leftToSellArray = inventory.map((television) => {
+    return television.originalStock - television.sold;
+  })
+  for (let i = 0; i < leftToSellArray.length; i++) {
+    leftToSell = leftToSell + leftToSellArray[i]
+  }
+  return leftToSell
+}
+
+const tvsToSell = document.getElementById("leftToSell")
+tvsToSell.innerHTML = "Nog te verkopen: " + "<br />" + leftToSell(inventory);
+
+/*console.log(leftToSell(inventory))*/
+
+function targetRevenue(inventory) {
+  let totalRevenue = 0
+  let revenueArray = inventory.map((a) => {
+    return a.price * a.originalStock
+  })
+  for (let i = 0; i < revenueArray.length; i++) {
+    totalRevenue = totalRevenue + revenueArray[i]
+  }
+  return totalRevenue
+}
+ const totalRevenue = document.getElementById("targetRevenue")
+totalRevenue.innerHTML = "Verwachte totale omzet: " + "<br />" + "€" + targetRevenue(inventory)
+
+/*console.log(targetRevenue(inventory))*/
+
+function currentRevenue(inventory) {
+  let currentRevenue = 0
+  let revenueArray = inventory.map((a) => {
+    return a.price * a.sold;
+  })
+  for (let i = 0; i < revenueArray.length; i++) {
+    currentRevenue = currentRevenue + revenueArray[i]
+  }
+  return currentRevenue
+}
+const revenueToDate = document.getElementById("revenueToDate")
+revenueToDate.innerHTML = "Huidige omzet: " + "<br />" + "€" + currentRevenue(inventory)
+
+/*console.log(currentRevenue(inventory))*/
+
+const televisionType1 = inventory[0].type
+const televisionType2 = inventory[2].type
+
+const televisionList = document.getElementById("televisionList")
+/*const televisionListItem1 = document.createElement("li")
+const televisionListItem2 = document.createElement("li")
+televisionListItem1.textContent = `${televisionType1}`
+televisionListItem2.textContent = `${televisionType2}`
+televisionList.appendChild(televisionListItem1)
+televisionList.appendChild(televisionListItem2)*/
+
+function showTvNameTag(television) {
+  return television.brand + " " + television.type + " - " + television.name
+}
+
+/*console.log(showTvNameTag(inventory[0]))*/
+
+function showPrice(television) {
+  return "€" + television.price + ",-"
+}
+
+/*console.log(showPrice(inventory[0]))*/
+
+function showScreenSizes(availableSizes) {
+  let sizesString = ''
+  for (let i = 0; i < availableSizes.length; i++) {
+    if (i === availableSizes.length - 1) {
+      sizesString = sizesString + availableSizes[i] + " inch (" + (availableSizes[i] * 2.54) + " cm)"
+    } else {
+      sizesString = sizesString + availableSizes[i] + " inch (" + (availableSizes[i] * 2.54) + " cm) | "
+    }
+  }
+  return sizesString
+}
+
+/*console.log(showScreenSizes(inventory[0].availableSizes))*/
+
+function createTelevisionParagraph(textLine) {
+  const createParagraph = document.createElement("p")
+  createParagraph.setAttribute("id", "tvItem")
+  createParagraph.textContent = `${textLine}`
+  return createParagraph
+}
+
+function printSingleTelevision(television) {
+  const container = document.createElement("div")
+  container.setAttribute("id", "televisionContainer")
+  televisionList.appendChild(container)
+  container.appendChild(createTelevisionParagraph(showTvNameTag(television)))
+  container.appendChild(createTelevisionParagraph(showPrice(television)))
+  container.appendChild(createTelevisionParagraph(showScreenSizes(television.availableSizes)))
+}
+
+/*console.log(printSingleTelevision(inventory[0]))*/
+
+function printAllTvs(inventory) {
+  for (let i = 0; i < inventory.length; i++) {
+    let a = printSingleTelevision(inventory[i])
+  }
+}
+
+printAllTvs(inventory)
+
+const sortByPriceButton = document.getElementById("priceLowToHigh")
+sortByPriceButton.addEventListener("click", () => { priceLowToHigh(inventory) })
+
+const ambilightButton = document.getElementById("ambilight")
+ambilightButton.addEventListener("click", () => { ambilightTvs(inventory) })
+
+const soldOutTvsButton = document.getElementById("soldOutTvs")
+soldOutTvsButton.addEventListener("click", () => { soldOutTvs(inventory) })
