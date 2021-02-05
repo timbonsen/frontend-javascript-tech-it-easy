@@ -1,0 +1,18 @@
+#leftToSell {
+    background-color: red;
+}
+
+#targetRevenue {
+    background-color: cornflowerblue;
+}
+
+#revenueToDate {
+    background-color: green;
+}
+
+#televisionContainer {
+    border-style: solid;
+    margin: 10px;
+    padding: 10px;
+    background-color: bisque;
+}
